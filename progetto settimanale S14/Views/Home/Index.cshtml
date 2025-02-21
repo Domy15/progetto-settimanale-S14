@@ -1,0 +1,31 @@
+﻿@model ArticleViewModel
+
+@{
+	ViewData["Title"] = "Prodotti";
+}
+
+<div class="text-end">
+	<a class="btn border-1 border-secondary" asp-controller="Home" asp-action="Add">Aggiungi Prodotto</a>
+</div>
+
+<div class="row justify-content-between">
+	@if (Model.Articles.Count > 0)
+	{
+		@foreach (var article in Model.Articles)
+		{
+			<div class="card col-4 mt-3" style="width: 18rem;">
+				<img src="@article.Cover" class="card-img-top">
+				<div class="card-body">
+					<h5 class="card-title">@article.Name</h5>
+					<p class="card-text">@article.Price €</p>
+					<a class="btn btn-primary" asp-controller="Home" asp-action="Detailes" asp-route-id="@article.Id">Dettagli</a>
+					<a class="btn btn-warning" asp-controller="Home" asp-action="Edit" asp-route-id="@article.Id">Modifica ✏</a>
+				</div>
+			</div>
+		}
+	}
+	else
+	{
+		<p class="text-center">Non ci sono articoli</p>
+	}
+</div>
